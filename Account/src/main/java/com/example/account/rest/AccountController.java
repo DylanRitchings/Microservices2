@@ -29,8 +29,8 @@ public class AccountController {
     @PostMapping("/create")
     public ResponseEntity<Account> create(@RequestBody Account account){
         //Should this be here?
-        String accNum = this.rest.getForObject("http://NUMGEN-API/accNum/get", String.class);
-        Double prizeNum = (Double) this.rest.getForObject(String.format("http://PRIZEGEN-API/prize/get/%s",accNum), Double.class);
+        String accNum = this.rest.getForObject("http://numgen-api/accNum/get", String.class);
+        String prizeNum = this.rest.getForObject(String.format("http://prizegen-api/prize/get/%s",accNum), String.class);
         Account createdObject = this.service.create(account, accNum, prizeNum);
         return new ResponseEntity<>(createdObject, HttpStatus.CREATED);
     }

@@ -23,7 +23,7 @@ public class AccountService {
 
     }
 
-    public Account create(Account account, String accNum, double prizeNum) {
+    public Account create(Account account, String accNum, String prizeNum) {
 //        int num = numGen.generateNumber();
 //        int prize = prizeGen.getPrize(num);
         account.setAccNum(accNum);

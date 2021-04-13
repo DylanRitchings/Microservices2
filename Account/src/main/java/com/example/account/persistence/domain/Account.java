@@ -29,5 +29,5 @@ public class Account {
     private String accNum;
 
     @Column
-    private Double prize;
+    private String prize;
 }

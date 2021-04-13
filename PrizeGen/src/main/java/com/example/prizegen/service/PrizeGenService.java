@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PrizeGenService {
-    public double genPrize(String accountNum) {
+    public String genPrize(String accountNum) {
         double prize = 0;
         accountNum = accountNum.toLowerCase();
         final int NUM_LENGTH  = accountNum.length();
@@ -25,7 +25,7 @@ public class PrizeGenService {
                 prize =  10000;
             }
         }
-        return prize;
+        return Double.toString(prize);
     }
 }
 
