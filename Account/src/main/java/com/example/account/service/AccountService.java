@@ -40,7 +40,7 @@ public class AccountService {
 
 
         Account returnAccount = this.repo.save(account);
-        sendMessage("message-q",returnAccount.toString());
+        sendMessage("account-log",returnAccount.toString());
         return returnAccount;
     }
 
