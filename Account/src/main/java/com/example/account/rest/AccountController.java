@@ -25,6 +25,10 @@ public class AccountController {
         this.rest = rest;
     }
 
+//    @PutMapping("/addToQ/{message}")
+//    public void addToQ(@PathVariable String message) {
+//        this.service.sendMessage(message);
+//    }
 
     @PostMapping("/create")
     public ResponseEntity<Account> create(@RequestBody Account account){

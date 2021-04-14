@@ -4,6 +4,7 @@ package com.example.account.service;
 import com.example.account.persistence.domain.Account;
 import com.example.account.persistence.repo.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,15 +14,22 @@ import java.util.List;
 public class AccountService {
     private AccountRepo repo;
     private RestTemplate rest;
+    private JmsTemplate jms;
 //    private NumGenService numGen;
 //    private PrizeGenService prizeGen;
 
     @Autowired
-    public AccountService(AccountRepo repo){
+    public AccountService(AccountRepo repo,  JmsTemplate jms){
         super();
         this.repo = repo;
-
+        this.jms = jms;
     }
+
+
+    private void sendMessage(String destination, String message){
+        this.jms.convertAndSend(destination,message);
+    }
+
 
     public Account create(Account account, String accNum, String prizeNum) {
 //        int num = numGen.generateNumber();
@@ -32,6 +40,7 @@ public class AccountService {
 
 
         Account returnAccount = this.repo.save(account);
+        sendMessage("message-q",returnAccount.toString());
         return returnAccount;
     }
 
